@@ -6,6 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.DependecyResolvers.Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 
 namespace WebAPI
 {
@@ -18,7 +21,19 @@ namespace WebAPI
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+               
+                // ---------- Dotnet IoC yerine AutoFac kullanmak istersek bu ayarlari yapmak lazim
+
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .ConfigureContainer<ContainerBuilder>(builder =>
+                {
+                    // Ioc ayarlarini da Business te AutofacBusinessModule yazmak 
+                    builder.RegisterModule(new AutofacBusinessModule());
+                })
+
+            //--------------------------------------------------------
+
+    .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });

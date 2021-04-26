@@ -30,12 +30,13 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            // bu kisim business e tasindi.Autofac klasorunde
 
             // singleton = bellekte 1 tane nesne uretir 1 milyon istekte gelse o referansi verir
-            //services.AddScoped<IProductService,ProductManager>();
-            services.AddSingleton<IProductService, ProductManager>(); // IoC = Bellekte bir kutu olsun icine newlenen seyleri atiyim kimin ihtiyaci olursa ona ilgili referansi veriyim. mantigi ile calisir.
+            //    //services.AddScoped<IProductService,ProductManager>();
+            //    services.AddSingleton<IProductService, ProductManager>(); // IoC = Bellekte bir kutu olsun icine newlenen seyleri atiyim kimin ihtiyaci olursa ona ilgili referansi veriyim. mantigi ile calisir.
 
-            services.AddSingleton<IProductDal, efProductDal>(); // Product manager da iproductdal istiyordu o bagimliligi da bu asamada cozduk. biri productdal istediginde efproductdal i ver dedik.
+            //    services.AddSingleton<IProductDal, efProductDal>(); // Product manager da iproductdal istiyordu o bagimliligi da bu asamada cozduk. biri productdal istediginde efproductdal i ver dedik.
 
         }
 
