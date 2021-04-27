@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Utilities.Results;
 
 namespace Business.Abstract
 {
@@ -10,8 +11,8 @@ namespace Business.Abstract
     /// </summary>
     public interface ICategoryService
     {
-        List<Category> GetAll();
-        Category GetById(int categoryId);
+        IDataResult<List<Category>> GetAll();
+        IDataResult<Category> GetById(int categoryId);
 
     }
 }
