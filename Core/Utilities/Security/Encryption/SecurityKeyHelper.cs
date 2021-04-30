@@ -16,7 +16,7 @@ namespace Core.Utilities.Security.Encryption
         /// </summary>
         /// <param name="securityKey">Security Key (appSettings.json)</param>
         /// <returns></returns>
-        public static SecurityKey CreateSeciSecurityKey(string securityKey)
+        public static SecurityKey CreateSecurityKey(string securityKey)
         {
             return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
         }
