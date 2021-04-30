@@ -22,8 +22,8 @@ namespace Business.DependecyResolvers.Autofac
             // biri senden service isterse manager ver
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<efProductDal>().As<IProductDal>().SingleInstance();
-            
 
+            
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
