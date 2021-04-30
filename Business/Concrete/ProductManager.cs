@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using System;
+using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -7,6 +8,7 @@ using System.Linq;
 using Business.BusinessAspects.Autofac;
 using Business.Constants.Northwind;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Valıdation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -47,6 +49,19 @@ namespace Business.Concrete
         public IResult Update(Product product)
         {
             throw new System.NotImplementedException();
+        }
+
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Product product)
+        {
+            Add(product);
+            if (product.UnitPrice < 10)
+            {
+                throw new Exception("");
+            }
+
+            Add(product);
+            return null;
         }
 
         [CacheAspect]
