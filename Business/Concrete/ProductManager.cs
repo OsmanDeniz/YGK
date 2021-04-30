@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Business.BusinessAspects.Autofac;
 using Business.Constants.Northwind;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Valıdation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -26,6 +27,7 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("admin")]
+        [CacheRemoveAspect("IProductService.Get")]
         // [ValidationAspect(typeof(ProductValidator))] // add metodunu dogrula productValidator kurallarina gore
         public IResult Add(Product product)
         {
@@ -41,12 +43,13 @@ namespace Business.Concrete
 
 
         [ValidationAspect(typeof(Product))]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Update(Product product)
         {
             throw new System.NotImplementedException();
         }
 
-
+        [CacheAspect]
         public IDataResult<List<Product>> GetAll()
         {
             //if (DateTime.Now.Hour == 12)
@@ -57,6 +60,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductListed);
         }
 
+        [CacheAspect]
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.ProductId == id));
