@@ -4,6 +4,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System.Collections.Generic;
 using System.Linq;
+using Business.BusinessAspects.Autofac;
 using Business.Constants.Northwind;
 using Core.Aspects.Autofac.Valıdation;
 using Core.Utilities.Business;
@@ -24,7 +25,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
-
+        [SecuredOperation("admin")]
         // [ValidationAspect(typeof(ProductValidator))] // add metodunu dogrula productValidator kurallarina gore
         public IResult Add(Product product)
         {
@@ -108,7 +109,7 @@ namespace Business.Concrete
             var result = _categoryService.GetAll();
             if (result.Data.Count > 15)
             {
-                return new ErrorResult(Messages.CategoryKimitExceded);
+                return new ErrorResult(Messages.CategoryLimitExceded);
             }
 
             return new SuccessResult();
