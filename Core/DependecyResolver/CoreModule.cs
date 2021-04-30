@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Core.CrossCuttingConcerns.Caching;
 using Core.CrossCuttingConcerns.Caching.Microsoft;
@@ -19,6 +20,7 @@ namespace Core.DependecyResolver
             serviceCollection.AddMemoryCache(); // IMemoryCache microsoftun injection edilmis oluyor.
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             serviceCollection.AddSingleton<ICacheManager, MemoryCacheManager>();
+            serviceCollection.AddSingleton<Stopwatch>();
         }
     }
 }

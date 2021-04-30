@@ -8,6 +8,7 @@ using System.Linq;
 using Business.BusinessAspects.Autofac;
 using Business.Constants.Northwind;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Valıdation;
 using Core.Utilities.Business;
@@ -65,6 +66,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        [PerformanceAspect(5)] // interval 5 : Metot calismasi 5 snden fazla ise beni uyar.
         public IDataResult<List<Product>> GetAll()
         {
             //if (DateTime.Now.Hour == 12)
