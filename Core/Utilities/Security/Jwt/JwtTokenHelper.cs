@@ -14,7 +14,7 @@ namespace Core.Utilities.Security
 {
 
 
-    public class JwtTokenHelper
+    public class JwtTokenHelper : ITokenHelper
     {
         public IConfiguration Configuration { get; } // appsettings.json dosyasini okumaya yariyor.
         private TokenOptions _tokenOptions;

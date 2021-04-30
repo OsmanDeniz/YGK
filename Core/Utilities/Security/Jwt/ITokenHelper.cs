@@ -13,6 +13,6 @@ namespace Core.Utilities.Security
       /// <param name="user"></param>
       /// <param name="operationClaims"></param>
       /// <returns></returns>
-        AccessToken CreateAccessToken(User user, List<OperationClaim> operationClaims);
+        AccessToken CreateToken(User user, List<OperationClaim> operationClaims);
     }
 }
